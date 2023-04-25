@@ -1,0 +1,24 @@
+#* Docker Compose version
+version: '3.9'
+
+#* All services to be used will be declared
+services:
+
+  #* Service name
+    frontend:
+      #* Image to use
+      image: node:18.16.0-alpine
+      init: true
+      #* Directory where you will work
+      working_dir: /home/dev
+      #* Container name
+      container_name: kananpass-front
+      command: sh -c "npm i && npm run dev"
+      #* Port exhibition
+      ports:
+        - 3000:3000
+        - 3001:3001
+      #* Volume where information persists
+      volumes:
+        - .:/home/dev
+      restart: unless-stopped
